@@ -68,37 +68,31 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-surface">
-  <div id="app" class="h-full flex flex-col overflow-auto">
-   <!-- Top Nav -->
+  <div id="app" class="h-full flex flex-col overflow-auto"><!-- Top Nav -->
    <header id="main-header" class="bg-white border-b border-gray-200 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
      <div class="flex items-center gap-3">
-      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center">
-       <i data-lucide="monitor" class="w-5 h-5 text-white"></i>
+      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center"><i data-lucide="monitor" class="w-5 h-5 text-white"></i>
       </div>
       <div>
        <h1 id="el-title" class="text-lg font-bold text-txt leading-tight">Technology Work Log</h1>
        <p id="el-school" class="text-xs text-muted leading-tight">Horizon Charter Academy</p>
       </div>
      </div>
-     <div class="flex items-center gap-3">
-      <span id="el-consultant" class="hidden sm:inline text-sm text-muted">IT Consultant</span>
+     <div class="flex items-center gap-3"><span id="el-consultant" class="hidden sm:inline text-sm text-muted">IT Consultant</span>
       <div class="w-8 h-8 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center font-bold text-sm">
        TC
       </div>
      </div>
     </div><!-- Tabs -->
-    <nav class="max-w-7xl mx-auto px-4 flex gap-1 overflow-x-auto" id="tab-nav">
-     <button onclick="switchTab('dashboard')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition tab-active" data-tab="dashboard"> <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Dashboard </button> <button onclick="switchTab('worklog')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="worklog"> <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Work Log </button> <button onclick="switchTab('inventory')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="inventory"> <i data-lucide="package" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Inventory </button> <button onclick="switchTab('vendor')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="vendor"> <i data-lucide="truck" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Vendors </button> <button onclick="switchTab('weekly')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="weekly"> <i data-lucide="bar-chart-3" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Weekly </button> <button onclick="switchTab('projects')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="projects"> <i data-lucide="folder-kanban" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Projects </button>
+    <nav class="max-w-7xl mx-auto px-4 flex gap-1 overflow-x-auto" id="tab-nav"><button onclick="switchTab('dashboard')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition tab-active" data-tab="dashboard"> <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Dashboard </button> <button onclick="switchTab('worklog')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="worklog"> <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Work Log </button> <button onclick="switchTab('inventory')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="inventory"> <i data-lucide="package" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Inventory </button> <button onclick="switchTab('vendor')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="vendor"> <i data-lucide="truck" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Vendors </button> <button onclick="switchTab('weekly')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="weekly"> <i data-lucide="bar-chart-3" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Weekly </button> <button onclick="switchTab('projects')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="projects"> <i data-lucide="folder-kanban" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Projects </button>
     </nav>
    </header><!-- Content -->
-   <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
-    <!-- DASHBOARD TAB -->
+   <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6"><!-- DASHBOARD TAB -->
     <section id="tab-dashboard" class="tab-content">
      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8" id="dashboard-stats"></div>
      <h2 class="text-lg font-bold text-txt mb-4">Quick Actions</h2>
-     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
-      <button onclick="switchTab('worklog');openModal('worklog')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="plus-circle" class="w-6 h-6 text-brand-500"></i>New Work Log </button> <button onclick="switchTab('inventory');openModal('inventory')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="package-plus" class="w-6 h-6 text-brand-500"></i>Add Asset </button> <button onclick="switchTab('vendor');openModal('vendor')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="ticket" class="w-6 h-6 text-brand-500"></i>New Vendor Ticket </button> <button onclick="switchTab('weekly')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="file-text" class="w-6 h-6 text-brand-500"></i>Weekly Summary </button> <button onclick="switchTab('projects');openModal('project')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="folder-plus" class="w-6 h-6 text-brand-500"></i>New Project </button>
+     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8"><button onclick="switchTab('worklog');openModal('worklog')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="plus-circle" class="w-6 h-6 text-brand-500"></i>New Work Log </button> <button onclick="switchTab('inventory');openModal('inventory')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="package-plus" class="w-6 h-6 text-brand-500"></i>Add Asset </button> <button onclick="switchTab('vendor');openModal('vendor')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="ticket" class="w-6 h-6 text-brand-500"></i>New Vendor Ticket </button> <button onclick="switchTab('weekly')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="file-text" class="w-6 h-6 text-brand-500"></i>Weekly Summary </button> <button onclick="switchTab('projects');openModal('project')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="folder-plus" class="w-6 h-6 text-brand-500"></i>New Project </button>
      </div><!-- Recent Activity -->
      <h2 class="text-lg font-bold text-txt mb-4">Recent Activity</h2>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -109,8 +103,7 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Daily Work Log</h2><button onclick="openModal('worklog')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Entry </button>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4">
-      <input type="date" id="wl-filter-date" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"> <select id="wl-filter-cat" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="wl-filter-status" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="wl-filter-loc" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
+     <div class="flex flex-wrap gap-2 mb-4"><input type="date" id="wl-filter-date" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"> <select id="wl-filter-cat" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="wl-filter-status" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="wl-filter-loc" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
      </div>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div class="overflow-x-auto" id="worklog-table"></div>
@@ -119,14 +112,12 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     <section id="tab-inventory" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Inventory Tracker</h2>
-      <div class="flex gap-2">
-       <button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
+      <div class="flex gap-2"><button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
       </div>
      </div>
      <div class="flex flex-wrap gap-2 mb-4">
-      <div class="relative">
-       <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
-      </div><select id="inv-filter-type" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Types</option></select> <select id="inv-filter-status" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="inv-filter-loc" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
+      <div class="relative"><i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
+      </div><select id="inv-filter-type" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Types</option></select> <select id="inv-filter-status" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select>
      </div>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div class="overflow-x-auto" id="inventory-table"></div>
@@ -136,8 +127,7 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Vendor Tracker</h2><button onclick="openModal('vendor')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Ticket </button>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4">
-      <select id="vn-filter-status" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="vn-filter-vendor" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Vendors</option></select> <select id="vn-filter-priority" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
+     <div class="flex flex-wrap gap-2 mb-4"><select id="vn-filter-status" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="vn-filter-vendor" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Vendors</option></select> <select id="vn-filter-priority" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
      </div><!-- Overdue highlight -->
      <div id="overdue-section" class="mb-4 hidden">
       <div class="bg-red-50 border border-red-200 rounded-xl p-4">
@@ -202,13 +192,13 @@ let workLogs = [
 ];
 
 let inventory = [
-  {id:1,assetId:'HCA-CB-001',type:'Chromebook',serial:'SN-8843A1',location:'Room 101',status:'In Service',assignedTo:'Mrs. Johnson',lastUpdated:'2025-01-10',notes:''},
-  {id:2,assetId:'HCA-CB-002',type:'Chromebook',serial:'SN-8843A2',location:'IT Closet',status:'In Repair',assignedTo:'',lastUpdated:'2025-01-13',notes:'Cracked screen'},
-  {id:3,assetId:'HCA-IP-010',type:'iPad',serial:'DMPXR3F0L',location:'Room 201',status:'In Service',assignedTo:'Mr. Davis',lastUpdated:'2025-01-08',notes:''},
-  {id:4,assetId:'HCA-LP-005',type:'Laptop',serial:'PF2HXYZ1',location:'Main Office',status:'In Service',assignedTo:'Front Desk',lastUpdated:'2025-01-05',notes:'Admin laptop'},
-  {id:5,assetId:'HCA-PR-003',type:'Printer',serial:'CNB8J120RV',location:'Media Center',status:'In Service',assignedTo:'',lastUpdated:'2025-01-12',notes:'Color laser'},
-  {id:6,assetId:'HCA-CB-015',type:'Chromebook',serial:'SN-9921C7',location:'Computer Lab',status:'Loaner',assignedTo:'Student Pool',lastUpdated:'2025-01-14',notes:'Loaner unit'},
-  {id:7,assetId:'HCA-AP-002',type:'Access Point',serial:'Q2HD-4412',location:'Room 202',status:'In Repair',assignedTo:'',lastUpdated:'2025-01-14',notes:'Intermittent connection'},
+  {id:1,assetId:'HCA-CB-001',type:'Chromebook',serial:'SN-8843A1',tagNumber:'TAG-2841',status:'In Service',assignedTo:'Mrs. Johnson',lastUpdated:'2025-01-10',notes:''},
+  {id:2,assetId:'HCA-CB-002',type:'Chromebook',serial:'SN-8843A2',tagNumber:'TAG-2842',status:'In Repair',assignedTo:'',lastUpdated:'2025-01-13',notes:'Cracked screen'},
+  {id:3,assetId:'HCA-IP-010',type:'iPad',serial:'DMPXR3F0L',tagNumber:'TAG-3101',status:'In Service',assignedTo:'Mr. Davis',lastUpdated:'2025-01-08',notes:''},
+  {id:4,assetId:'HCA-LP-005',type:'Laptop',serial:'PF2HXYZ1',tagNumber:'TAG-5001',status:'In Service',assignedTo:'Front Desk',lastUpdated:'2025-01-05',notes:'Admin laptop'},
+  {id:5,assetId:'HCA-PR-003',type:'Printer',serial:'CNB8J120RV',tagNumber:'TAG-6050',status:'In Service',assignedTo:'',lastUpdated:'2025-01-12',notes:'Color laser'},
+  {id:6,assetId:'HCA-CB-015',type:'Chromebook',serial:'SN-9921C7',tagNumber:'TAG-2855',status:'Loaner',assignedTo:'Student Pool',lastUpdated:'2025-01-14',notes:'Loaner unit'},
+  {id:7,assetId:'HCA-AP-002',type:'Access Point',serial:'Q2HD-4412',tagNumber:'TAG-7220',status:'In Repair',assignedTo:'',lastUpdated:'2025-01-14',notes:'Intermittent connection'},
 ];
 
 let vendorTickets = [
@@ -359,20 +349,17 @@ function deleteWorklog(id) {
 function renderInventory() {
   populateSelect('inv-filter-type', deviceTypes, 'All Types');
   populateSelect('inv-filter-status', invStatuses, 'All Statuses');
-  populateSelect('inv-filter-loc', invLocations, 'All Locations');
 
   let data = [...inventory];
   const search = document.getElementById('inv-search').value.toLowerCase();
   const ft = document.getElementById('inv-filter-type').value;
   const fs = document.getElementById('inv-filter-status').value;
-  const fl = document.getElementById('inv-filter-loc').value;
-  if (search) data = data.filter(d => d.assetId.toLowerCase().includes(search) || d.serial.toLowerCase().includes(search) || d.assignedTo.toLowerCase().includes(search));
+  if (search) data = data.filter(d => d.assetId.toLowerCase().includes(search) || d.serial.toLowerCase().includes(search) || d.tagNumber.toLowerCase().includes(search) || d.assignedTo.toLowerCase().includes(search));
   if (ft) data = data.filter(d => d.type === ft);
   if (fs) data = data.filter(d => d.status === fs);
-  if (fl) data = data.filter(d => d.location === fl);
 
-  document.getElementById('inventory-table').innerHTML = `<table><thead><tr><th>Device ID</th><th>Type</th><th>Serial</th><th>Location</th><th>Status</th><th>Assigned To</th><th>Updated</th><th>Actions</th></tr></thead><tbody>${
-    data.map(r => `<tr><td class="font-mono text-xs">${r.assetId}</td><td>${r.type}</td><td class="font-mono text-xs">${r.serial}</td><td>${r.location}</td><td>${statusBadge(r.status)}</td><td>${r.assignedTo||'—'}</td><td>${r.lastUpdated}</td>
+  document.getElementById('inventory-table').innerHTML = `<table><thead><tr><th>Device ID</th><th>Type</th><th>Serial</th><th>Tag Number</th><th>Status</th><th>Assigned To</th><th>Updated</th><th>Actions</th></tr></thead><tbody>${
+    data.map(r => `<tr><td class="font-mono text-xs">${r.assetId}</td><td>${r.type}</td><td class="font-mono text-xs">${r.serial}</td><td class="font-mono text-xs font-bold text-brand-600">${r.tagNumber}</td><td>${statusBadge(r.status)}</td><td>${r.assignedTo||'—'}</td><td>${r.lastUpdated}</td>
     <td class="flex gap-1 flex-wrap">
       <button onclick="editInventory(${r.id})" class="text-xs text-brand-600 hover:underline">Edit</button>
       <button onclick="setInvStatus(${r.id},'In Repair')" class="text-xs text-warn hover:underline">Repair</button>
@@ -667,7 +654,7 @@ function openModal(type, existing) {
       {name:'assetId',label:'Asset ID',type:'text',value:existing?.assetId||'HCA-',half:true},
       {name:'type',label:'Device Type',type:'select',options:deviceTypes,value:existing?.type||'',half:true},
       {name:'serial',label:'Serial Number',type:'text',value:existing?.serial||''},
-      {name:'location',label:'Location',type:'select',options:invLocations,value:existing?.location||'',half:true},
+      {name:'tagNumber',label:'Tag Number',type:'text',value:existing?.tagNumber||'TAG-',half:true},
       {name:'status',label:'Status',type:'select',options:invStatuses,value:existing?.status||'In Service',half:true},
       {name:'assignedTo',label:'Assigned To',type:'text',value:existing?.assignedTo||''},
       {name:'notes',label:'Notes',type:'textarea',value:existing?.notes||''},
@@ -824,5 +811,5 @@ if (window.elementSdk) {
 renderDashboard();
 lucide.createIcons();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed3cc2517a482ea',t:'MTc3NjM0ODg3Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed3d45a236a82ea',t:'MTc3NjM0OTIxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
