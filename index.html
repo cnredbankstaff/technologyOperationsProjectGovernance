@@ -68,31 +68,37 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-surface">
-  <div id="app" class="h-full flex flex-col overflow-auto"><!-- Top Nav -->
+  <div id="app" class="h-full flex flex-col overflow-auto">
+   <!-- Top Nav -->
    <header id="main-header" class="bg-white border-b border-gray-200 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
      <div class="flex items-center gap-3">
-      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center"><i data-lucide="monitor" class="w-5 h-5 text-white"></i>
+      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center">
+       <i data-lucide="monitor" class="w-5 h-5 text-white"></i>
       </div>
       <div>
        <h1 id="el-title" class="text-lg font-bold text-txt leading-tight">Technology Work Log</h1>
        <p id="el-school" class="text-xs text-muted leading-tight">Horizon Charter Academy</p>
       </div>
      </div>
-     <div class="flex items-center gap-3"><span id="el-consultant" class="hidden sm:inline text-sm text-muted">IT Consultant</span>
+     <div class="flex items-center gap-3">
+      <span id="el-consultant" class="hidden sm:inline text-sm text-muted">IT Consultant</span>
       <div class="w-8 h-8 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center font-bold text-sm">
        TC
       </div>
      </div>
     </div><!-- Tabs -->
-    <nav class="max-w-7xl mx-auto px-4 flex gap-1 overflow-x-auto" id="tab-nav"><button onclick="switchTab('dashboard')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition tab-active" data-tab="dashboard"> <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Dashboard </button> <button onclick="switchTab('worklog')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="worklog"> <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Work Log </button> <button onclick="switchTab('inventory')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="inventory"> <i data-lucide="package" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Inventory </button> <button onclick="switchTab('vendor')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="vendor"> <i data-lucide="truck" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Vendors </button> <button onclick="switchTab('weekly')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="weekly"> <i data-lucide="bar-chart-3" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Weekly </button> <button onclick="switchTab('projects')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="projects"> <i data-lucide="folder-kanban" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Projects </button>
+    <nav class="max-w-7xl mx-auto px-4 flex gap-1 overflow-x-auto" id="tab-nav">
+     <button onclick="switchTab('dashboard')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition tab-active" data-tab="dashboard"> <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Dashboard </button> <button onclick="switchTab('worklog')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="worklog"> <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Work Log </button> <button onclick="switchTab('inventory')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="inventory"> <i data-lucide="package" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Inventory </button> <button onclick="switchTab('vendor')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="vendor"> <i data-lucide="truck" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Vendors </button> <button onclick="switchTab('weekly')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="weekly"> <i data-lucide="bar-chart-3" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Weekly </button> <button onclick="switchTab('projects')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="projects"> <i data-lucide="folder-kanban" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Projects </button>
     </nav>
    </header><!-- Content -->
-   <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6"><!-- DASHBOARD TAB -->
+   <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+    <!-- DASHBOARD TAB -->
     <section id="tab-dashboard" class="tab-content">
      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8" id="dashboard-stats"></div>
      <h2 class="text-lg font-bold text-txt mb-4">Quick Actions</h2>
-     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8"><button onclick="switchTab('worklog');openModal('worklog')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="plus-circle" class="w-6 h-6 text-brand-500"></i>New Work Log </button> <button onclick="switchTab('inventory');openModal('inventory')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="package-plus" class="w-6 h-6 text-brand-500"></i>Add Asset </button> <button onclick="switchTab('vendor');openModal('vendor')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="ticket" class="w-6 h-6 text-brand-500"></i>New Vendor Ticket </button> <button onclick="switchTab('weekly')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="file-text" class="w-6 h-6 text-brand-500"></i>Weekly Summary </button> <button onclick="switchTab('projects');openModal('project')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="folder-plus" class="w-6 h-6 text-brand-500"></i>New Project </button>
+     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+      <button onclick="switchTab('worklog');openModal('worklog')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="plus-circle" class="w-6 h-6 text-brand-500"></i>New Work Log </button> <button onclick="switchTab('inventory');openModal('inventory')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="package-plus" class="w-6 h-6 text-brand-500"></i>Add Asset </button> <button onclick="switchTab('vendor');openModal('vendor')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="ticket" class="w-6 h-6 text-brand-500"></i>New Vendor Ticket </button> <button onclick="switchTab('weekly')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="file-text" class="w-6 h-6 text-brand-500"></i>Weekly Summary </button> <button onclick="switchTab('projects');openModal('project')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="folder-plus" class="w-6 h-6 text-brand-500"></i>New Project </button>
      </div><!-- Recent Activity -->
      <h2 class="text-lg font-bold text-txt mb-4">Recent Activity</h2>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -103,7 +109,8 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Daily Work Log</h2><button onclick="openModal('worklog')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Entry </button>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4"><input type="date" id="wl-filter-date" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"> <select id="wl-filter-cat" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="wl-filter-status" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="wl-filter-loc" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
+     <div class="flex flex-wrap gap-2 mb-4">
+      <input type="date" id="wl-filter-date" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"> <select id="wl-filter-cat" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="wl-filter-status" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="wl-filter-loc" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
      </div>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div class="overflow-x-auto" id="worklog-table"></div>
@@ -112,11 +119,13 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     <section id="tab-inventory" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Inventory Tracker</h2>
-      <div class="flex gap-2"><button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
+      <div class="flex gap-2">
+       <button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
       </div>
      </div>
      <div class="flex flex-wrap gap-2 mb-4">
-      <div class="relative"><i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
+      <div class="relative">
+       <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
       </div><select id="inv-filter-type" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Types</option></select> <select id="inv-filter-status" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select>
      </div>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -125,9 +134,13 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     </section><!-- VENDOR TAB -->
     <section id="tab-vendor" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-      <h2 class="text-lg font-bold text-txt">Vendor Tracker</h2><button onclick="openModal('vendor')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Ticket </button>
+      <h2 class="text-lg font-bold text-txt">Vendor Tracker</h2>
+      <div class="flex gap-2">
+       <button onclick="openVendorManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Manage Vendors </button><button onclick="openModal('vendor')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Ticket </button>
+      </div>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4"><select id="vn-filter-status" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="vn-filter-vendor" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Vendors</option></select> <select id="vn-filter-priority" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
+     <div class="flex flex-wrap gap-2 mb-4">
+      <select id="vn-filter-status" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="vn-filter-vendor" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Vendors</option></select> <select id="vn-filter-priority" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
      </div><!-- Overdue highlight -->
      <div id="overdue-section" class="mb-4 hidden">
       <div class="bg-red-50 border border-red-200 rounded-xl p-4">
@@ -151,7 +164,10 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     </section><!-- PROJECTS TAB -->
     <section id="tab-projects" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-      <h2 class="text-lg font-bold text-txt">Project Tracking</h2><button onclick="openModal('project')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Project </button>
+      <h2 class="text-lg font-bold text-txt">Project Tracking</h2>
+      <div class="flex gap-2">
+       <button onclick="openProjectCategoryManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Categories </button><button onclick="openModal('project')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Project </button>
+      </div>
      </div><!-- Kanban -->
      <h3 class="text-sm font-bold text-txt mb-3">Project Board</h3>
      <div class="flex gap-3 overflow-x-auto pb-4 mb-6" id="kanban-board"></div><!-- Project Table -->
@@ -179,8 +195,20 @@ const vnStatuses = ['Open','In Progress','Pending Vendor','Resolved','Closed'];
 const vnPriorities = ['Low','Medium','High','Critical'];
 const vendors = ['Google Admin','CDW-G','Apple Support','Comcast','Cisco Meraki','PowerSchool'];
 const projStatuses = ['Not Started','Planning','In Progress','Waiting on Vendor','Completed','On Hold'];
-const projCategories = ['Infrastructure','Devices','Software','Security','Vendor'];
+const projCategories = ['IT Infrastructure','Classroom Technology','Facilities & Room Setup','Communications Systems','Security Systems','Vendor Projects','Device Lifecycle / Inventory','Software / Systems','Compliance & Documentation','Operational Improvements'];
 const projPriorities = ['Low','Medium','High','Critical'];
+const projSubTypes = {
+  'IT Infrastructure': ['Wi-Fi Upgrade','Network Switch','Server Maintenance','Cabling','Access Points','Data Center'],
+  'Classroom Technology': ['Projector Installation','Interactive Display','Audio System','Device Deployment','Room Setup'],
+  'Facilities & Room Setup': ['HVAC','Lighting','Furniture','Signage','Access Control','IT Closet'],
+  'Communications Systems': ['Phone Line','Intercom System','Mass Notification','Video Conference'],
+  'Security Systems': ['Camera System','Badge System','Alarm System','Monitoring'],
+  'Vendor Projects': ['Vendor Implementation','Service Agreement','Contract Renewal','Support Ticket'],
+  'Device Lifecycle / Inventory': ['Chromebook Refresh','Device Audit','Asset Tagging','Repair Program'],
+  'Software / Systems': ['SIS Migration','LMS Update','Backup System','Licensing'],
+  'Compliance & Documentation': ['Policy Update','Audit Preparation','Data Recovery','Records Management'],
+  'Operational Improvements': ['Process Improvement','Training Program','Staff Development','Budget Planning']
+};
 
 // Sample data
 let workLogs = [
@@ -209,11 +237,11 @@ let vendorTickets = [
 ];
 
 let projects = [
-  {id:1,name:'1:1 Chromebook Refresh',category:'Devices',description:'Replace aging Chromebooks for grades 5-8',owner:'IT Consultant',status:'In Progress',priority:'High',startDate:'2025-01-06',targetDate:'2025-03-15',lastUpdated:'2025-01-14',notes:'60 of 120 units deployed'},
-  {id:2,name:'WiFi Infrastructure Upgrade',category:'Infrastructure',description:'Replace all APs with Meraki MR46 units',owner:'Cisco Meraki',status:'Waiting on Vendor',priority:'Critical',startDate:'2024-12-01',targetDate:'2025-02-28',lastUpdated:'2025-01-14',notes:'Awaiting 8 AP shipment from vendor'},
-  {id:3,name:'PowerSchool SIS Migration',category:'Software',description:'Migrate to PowerSchool cloud-hosted SIS',owner:'PowerSchool',status:'Planning',priority:'Medium',startDate:'2025-02-01',targetDate:'2025-06-30',lastUpdated:'2025-01-10',notes:'Kick-off scheduled Feb 1'},
-  {id:4,name:'Security Camera System',category:'Security',description:'Install IP camera system in hallways and entrances',owner:'IT Consultant',status:'Not Started',priority:'Medium',startDate:'2025-03-01',targetDate:'2025-05-15',lastUpdated:'2025-01-08',notes:'RFP in progress'},
-  {id:5,name:'Bandwidth Upgrade',category:'Infrastructure',description:'Upgrade internet from 200Mbps to 1Gbps',owner:'Comcast',status:'Waiting on Vendor',priority:'Critical',startDate:'2025-01-06',targetDate:'2025-02-15',lastUpdated:'2025-01-09',notes:'Comcast delayed - at risk'},
+  {id:1,name:'1:1 Chromebook Refresh',category:'Device Lifecycle / Inventory',subType:'Chromebook Refresh',description:'Replace aging Chromebooks for grades 5-8',owner:'IT Consultant',status:'In Progress',priority:'High',startDate:'2025-01-06',targetDate:'2025-03-15',lastUpdated:'2025-01-14',notes:'60 of 120 units deployed'},
+  {id:2,name:'WiFi Infrastructure Upgrade',category:'IT Infrastructure',subType:'Wi-Fi Upgrade',description:'Replace all APs with Meraki MR46 units',owner:'Cisco Meraki',status:'Waiting on Vendor',priority:'Critical',startDate:'2024-12-01',targetDate:'2025-02-28',lastUpdated:'2025-01-14',notes:'Awaiting 8 AP shipment from vendor'},
+  {id:3,name:'PowerSchool SIS Migration',category:'Software / Systems',subType:'SIS Migration',description:'Migrate to PowerSchool cloud-hosted SIS',owner:'PowerSchool',status:'Planning',priority:'Medium',startDate:'2025-02-01',targetDate:'2025-06-30',lastUpdated:'2025-01-10',notes:'Kick-off scheduled Feb 1'},
+  {id:4,name:'Security Camera System',category:'Security Systems',subType:'Camera System',description:'Install IP camera system in hallways and entrances',owner:'IT Consultant',status:'Not Started',priority:'Medium',startDate:'2025-03-01',targetDate:'2025-05-15',lastUpdated:'2025-01-08',notes:'RFP in progress'},
+  {id:5,name:'Bandwidth Upgrade',category:'IT Infrastructure',subType:'Network Switch',description:'Upgrade internet from 200Mbps to 1Gbps',owner:'Comcast',status:'Waiting on Vendor',priority:'Critical',startDate:'2025-01-06',targetDate:'2025-02-15',lastUpdated:'2025-01-09',notes:'Comcast delayed - at risk'},
 ];
 
 let weeklySummaries = [
@@ -501,6 +529,106 @@ function editVendor(id) {
   if (item) openModal('vendor', item);
 }
 
+function openVendorManager() {
+  const container = document.getElementById('modal-container');
+  container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box max-w-md">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-txt">Manage Vendors</h3>
+        <button onclick="closeModal()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-muted mb-2">Add New Vendor</label>
+        <div class="flex gap-2">
+          <input type="text" id="new-vendor-name" placeholder="Enter vendor name..." class="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+          <button onclick="addVendor()" class="px-3 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700"><i data-lucide="plus" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label class="block text-xs font-semibold text-muted mb-2">Existing Vendors</label>
+        <div class="space-y-1 max-h-64 overflow-y-auto border border-gray-200 rounded-lg p-2">
+          ${vendors.map(vendor => {
+            const ticketCount = vendorTickets.filter(t => t.vendor === vendor).length;
+            return `
+            <div class="flex items-center justify-between gap-2 p-2 bg-gray-50 rounded hover:bg-gray-100">
+              <div>
+                <span class="text-sm text-txt font-medium">${vendor}</span>
+                <span class="text-xs text-muted ml-2">(${ticketCount} ticket${ticketCount !== 1 ? 's' : ''})</span>
+              </div>
+              <button onclick="deleteVendorType('${vendor.replace(/'/g, "\\'")}')" class="text-danger hover:text-critical text-xs font-medium"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+            </div>
+          `;
+          }).join('')}
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-4">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Close</button>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function addVendor() {
+  const input = document.getElementById('new-vendor-name');
+  const value = input.value.trim();
+  if (!value) return;
+  if (vendors.includes(value)) {
+    const container = document.getElementById('modal-container');
+    container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+      <div class="modal-box max-w-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-txt">Vendor Exists</h3>
+          <button onclick="closeModal();openVendorManager()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="mb-4">
+          <p class="text-sm text-txt">This vendor already exists in your list.</p>
+        </div>
+        <div class="flex justify-end gap-2">
+          <button onclick="closeModal();openVendorManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Back</button>
+        </div>
+      </div>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+  vendors.push(value);
+  input.value = '';
+  openVendorManager();
+}
+
+function deleteVendorType(vendorName) {
+  const inUse = vendorTickets.some(t => t.vendor === vendorName);
+  if (inUse) {
+    const count = vendorTickets.filter(t => t.vendor === vendorName).length;
+    const container = document.getElementById('modal-container');
+    container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+      <div class="modal-box max-w-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-txt">Cannot Delete Vendor</h3>
+          <button onclick="closeModal();openVendorManager()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="mb-4">
+          <p class="text-sm text-txt mb-3">This vendor is in use by <strong>${count} ticket(s)</strong>. You must remove or reassign those tickets first.</p>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+            <div class="text-xs text-red-700"><strong>${vendorName}:</strong> ${count} ticket(s)</div>
+          </div>
+        </div>
+        <div class="flex justify-end gap-2">
+          <button onclick="closeModal();openVendorManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Back to Manager</button>
+        </div>
+      </div>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+  vendors = vendors.filter(v => v !== vendorName);
+  openVendorManager();
+}
+
 function confirmDeleteVendor(id) {
   const item = vendorTickets.find(v => v.id === id);
   if (!item) return;
@@ -567,6 +695,10 @@ function renderWeekly() {
 
 // ============ PROJECTS ============
 function renderProjects() {
+  populateSelect('proj-filter-status', projStatuses, 'All Statuses');
+  populateSelect('proj-filter-category', projCategories, 'All Categories');
+  populateSelect('proj-filter-priority', projPriorities, 'All Priorities');
+
   // Kanban
   const kanbanStatuses = ['Not Started','Planning','In Progress','Waiting on Vendor','Completed','On Hold'];
   const kanbanColors = {'Not Started':'gray','Planning':'indigo','In Progress':'blue','Waiting on Vendor':'amber','Completed':'emerald','On Hold':'red'};
@@ -587,12 +719,20 @@ function renderProjects() {
     </div>`;
   }).join('');
 
-  // Table
-  document.getElementById('project-table').innerHTML = `<table><thead><tr><th>Project</th><th>Category</th><th>Owner</th><th>Status</th><th>Priority</th><th>Target</th><th>Action</th></tr></thead><tbody>${
-    projects.map(p => {
+  // Table with filters
+  let data = [...projects];
+  const fs = document.getElementById('proj-filter-status').value;
+  const fc = document.getElementById('proj-filter-category').value;
+  const fp = document.getElementById('proj-filter-priority').value;
+  if (fs) data = data.filter(p => p.status === fs);
+  if (fc) data = data.filter(p => p.category === fc);
+  if (fp) data = data.filter(p => p.priority === fp);
+
+  document.getElementById('project-table').innerHTML = `<table><thead><tr><th>Project</th><th>Category</th><th>Sub-Type</th><th>Owner</th><th>Status</th><th>Priority</th><th>Target</th><th>Actions</th></tr></thead><tbody>${
+    data.map(p => {
       const atRisk = p.status === 'Waiting on Vendor' && p.priority === 'Critical';
-      return `<tr class="${atRisk?'bg-red-50':''}"><td class="font-semibold">${p.name}${atRisk?' <span class="badge badge-atrisk">At Risk</span>':''}</td><td>${p.category}</td><td>${p.owner}</td><td>${statusBadge(p.status)}</td><td>${priorityBadge(p.priority)}</td><td>${p.targetDate}</td>
-      <td><button onclick="editProject(${p.id})" class="text-xs text-brand-600 hover:underline">Edit</button></td></tr>`;
+      return `<tr class="${atRisk?'bg-red-50':''}"><td class="font-semibold">${p.name}${atRisk?' <span class="badge badge-atrisk">At Risk</span>':''}</td><td>${p.category}</td><td><span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">${p.subType||'—'}</span></td><td>${p.owner}</td><td>${statusBadge(p.status)}</td><td>${priorityBadge(p.priority)}</td><td>${p.targetDate}</td>
+      <td><button onclick="editProject(${p.id})" class="text-xs text-brand-600 hover:underline">Edit</button> <button onclick="confirmDeleteProject(${p.id})" class="text-xs text-danger hover:underline">Delete</button></td></tr>`;
     }).join('')
   }</tbody></table>`;
 
@@ -621,6 +761,145 @@ function renderProjects() {
 function editProject(id) {
   const item = projects.find(p => p.id === id);
   if (item) openModal('project', item);
+}
+
+function getSubTypesForCategory(category) {
+  return projSubTypes[category] || [];
+}
+
+function confirmDeleteProject(id) {
+  const item = projects.find(p => p.id === id);
+  if (!item) return;
+
+  const container = document.getElementById('modal-container');
+  container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-txt">Delete Project?</h3>
+        <button onclick="closeModal()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="mb-6">
+        <p class="text-sm text-txt mb-3">Are you sure you want to delete this project?</p>
+        <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+          <div class="text-xs text-muted mb-1"><strong>Name:</strong> ${item.name}</div>
+          <div class="text-xs text-muted mb-1"><strong>Category:</strong> ${item.category}</div>
+          <div class="text-xs text-muted"><strong>Status:</strong> ${item.status}</div>
+        </div>
+        <p class="text-xs text-danger mt-3">This action cannot be undone.</p>
+      </div>
+      <div class="flex justify-end gap-2">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Cancel</button>
+        <button onclick="deleteProject(${id})" class="px-5 py-2 rounded-lg bg-danger text-white text-sm font-semibold hover:bg-critical">Delete Project</button>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function deleteProject(id) {
+  projects = projects.filter(p => p.id !== id);
+  renderProjects();
+  closeModal();
+}
+
+function openProjectCategoryManager() {
+  const container = document.getElementById('modal-container');
+  container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box max-w-md">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-txt">Manage Project Categories</h3>
+        <button onclick="closeModal()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-muted mb-2">Add New Category</label>
+        <div class="flex gap-2">
+          <input type="text" id="new-proj-category" placeholder="Enter category name..." class="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+          <button onclick="addProjectCategory()" class="px-3 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700"><i data-lucide="plus" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label class="block text-xs font-semibold text-muted mb-2">Existing Categories</label>
+        <div class="space-y-1 max-h-64 overflow-y-auto border border-gray-200 rounded-lg p-2">
+          ${projCategories.map(category => {
+            const projCount = projects.filter(p => p.category === category).length;
+            return `
+            <div class="flex items-center justify-between gap-2 p-2 bg-gray-50 rounded hover:bg-gray-100">
+              <div>
+                <span class="text-sm text-txt font-medium">${category}</span>
+                <span class="text-xs text-muted ml-2">(${projCount} project${projCount !== 1 ? 's' : ''})</span>
+              </div>
+              <button onclick="deleteProjectCategory('${category.replace(/'/g, "\\'")}')" class="text-danger hover:text-critical text-xs font-medium"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+            </div>
+          `;
+          }).join('')}
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-4">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Close</button>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function addProjectCategory() {
+  const input = document.getElementById('new-proj-category');
+  const value = input.value.trim();
+  if (!value) return;
+  if (projCategories.includes(value)) {
+    const container = document.getElementById('modal-container');
+    container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+      <div class="modal-box max-w-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-txt">Category Exists</h3>
+          <button onclick="closeModal();openProjectCategoryManager()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="mb-4">
+          <p class="text-sm text-txt">This category already exists in your list.</p>
+        </div>
+        <div class="flex justify-end gap-2">
+          <button onclick="closeModal();openProjectCategoryManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Back</button>
+        </div>
+      </div>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+  projCategories.push(value);
+  input.value = '';
+  openProjectCategoryManager();
+}
+
+function deleteProjectCategory(categoryName) {
+  const inUse = projects.some(p => p.category === categoryName);
+  if (inUse) {
+    const count = projects.filter(p => p.category === categoryName).length;
+    const container = document.getElementById('modal-container');
+    container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+      <div class="modal-box max-w-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-txt">Cannot Delete Category</h3>
+          <button onclick="closeModal();openProjectCategoryManager()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="mb-4">
+          <p class="text-sm text-txt mb-3">This category is in use by <strong>${count} project(s)</strong>. You must remove or reassign those projects first.</p>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+            <div class="text-xs text-red-700"><strong>${categoryName}:</strong> ${count} project(s)</div>
+          </div>
+        </div>
+        <div class="flex justify-end gap-2">
+          <button onclick="closeModal();openProjectCategoryManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Back to Manager</button>
+        </div>
+      </div>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+  projCategories = projCategories.filter(c => c !== categoryName);
+  openProjectCategoryManager();
 }
 
 // ============ MODALS ============
@@ -685,9 +964,12 @@ function openModal(type, existing) {
     };
   } else if (type === 'project') {
     title = isEdit ? 'Edit Project' : 'New Project';
+    const categoryValue = existing?.category || '';
+    const subTypesForCategory = getSubTypesForCategory(categoryValue);
     fields = [
       {name:'name',label:'Project Name',type:'text',value:existing?.name||''},
-      {name:'category',label:'Category',type:'select',options:projCategories,value:existing?.category||'',half:true},
+      {name:'category',label:'Category',type:'select',options:projCategories,value:existing?.category||'',half:true,onChange:'updateSubTypes'},
+      {name:'subType',label:'Sub-Type',type:'select',options:['', ...subTypesForCategory],value:existing?.subType||'',half:true},
       {name:'owner',label:'Owner',type:'text',value:existing?.owner||'',half:true},
       {name:'description',label:'Description',type:'textarea',value:existing?.description||''},
       {name:'status',label:'Status',type:'select',options:projStatuses,value:existing?.status||'Not Started',half:true},
@@ -716,7 +998,10 @@ function openModal(type, existing) {
           ${fields.map(f => {
             const w = f.half ? 'flex-1 min-w-[180px]' : 'w-full';
             if (f.type === 'textarea') return `<div class="${w}"><label class="block text-xs font-semibold text-muted mb-1">${f.label}</label><textarea name="${f.name}" rows="2" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm">${f.value}</textarea></div>`;
-            if (f.type === 'select') return `<div class="${w}"><label class="block text-xs font-semibold text-muted mb-1">${f.label}</label><select name="${f.name}" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm">${f.options.map(o => `<option value="${o}"${o===f.value?' selected':''}>${o||'— Select —'}</option>`).join('')}</select></div>`;
+            if (f.type === 'select') {
+              const onChangeAttr = f.name === 'category' ? ' onchange="updateSubTypes(this)"' : '';
+              return `<div class="${w}"><label class="block text-xs font-semibold text-muted mb-1">${f.label}</label><select name="${f.name}" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm"${onChangeAttr}>${f.options.map(o => `<option value="${o}"${o===f.value?' selected':''}>${o||'— Select —'}</option>`).join('')}</select></div>`;
+            }
             return `<div class="${w}"><label class="block text-xs font-semibold text-muted mb-1">${f.label}</label><input type="${f.type}" name="${f.name}" value="${f.value}" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm"></div>`;
           }).join('')}
         </div>
@@ -741,6 +1026,15 @@ function openModal(type, existing) {
 
 function closeModal() {
   document.getElementById('modal-container').innerHTML = '';
+}
+
+function updateSubTypes(categorySelect) {
+  const selectedCategory = categorySelect.value;
+  const subTypes = getSubTypesForCategory(selectedCategory);
+  const subTypeSelect = document.querySelector('select[name="subType"]');
+  if (subTypeSelect) {
+    subTypeSelect.innerHTML = `<option value="">— Select Sub-Type —</option>` + subTypes.map(st => `<option value="${st}">${st}</option>`).join('');
+  }
 }
 
 // ============ HELPERS ============
@@ -811,5 +1105,5 @@ if (window.elementSdk) {
 renderDashboard();
 lucide.createIcons();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed3d45a236a82ea',t:'MTc3NjM0OTIxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed3f726d246b731',t:'MTc3NjM1MDYzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
