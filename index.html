@@ -68,37 +68,31 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-surface">
-  <div id="app" class="h-full flex flex-col overflow-auto">
-   <!-- Top Nav -->
+  <div id="app" class="h-full flex flex-col overflow-auto"><!-- Top Nav -->
    <header id="main-header" class="bg-white border-b border-gray-200 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
      <div class="flex items-center gap-3">
-      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center">
-       <i data-lucide="monitor" class="w-5 h-5 text-white"></i>
+      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center"><i data-lucide="monitor" class="w-5 h-5 text-white"></i>
       </div>
       <div>
        <h1 id="el-title" class="text-lg font-bold text-txt leading-tight">Technology Work Log</h1>
        <p id="el-school" class="text-xs text-muted leading-tight">Horizon Charter Academy</p>
       </div>
      </div>
-     <div class="flex items-center gap-3">
-      <span id="el-consultant" class="hidden sm:inline text-sm text-muted">IT Consultant</span>
+     <div class="flex items-center gap-3"><span id="el-consultant" class="hidden sm:inline text-sm text-muted">IT Consultant</span>
       <div class="w-8 h-8 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center font-bold text-sm">
        TC
       </div>
      </div>
     </div><!-- Tabs -->
-    <nav class="max-w-7xl mx-auto px-4 flex gap-1 overflow-x-auto" id="tab-nav">
-     <button onclick="switchTab('dashboard')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition tab-active" data-tab="dashboard"> <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Dashboard </button> <button onclick="switchTab('worklog')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="worklog"> <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Work Log </button> <button onclick="switchTab('inventory')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="inventory"> <i data-lucide="package" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Inventory </button> <button onclick="switchTab('vendor')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="vendor"> <i data-lucide="truck" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Vendors </button> <button onclick="switchTab('weekly')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="weekly"> <i data-lucide="bar-chart-3" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Weekly </button> <button onclick="switchTab('projects')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="projects"> <i data-lucide="folder-kanban" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Projects </button>
+    <nav class="max-w-7xl mx-auto px-4 flex gap-1 overflow-x-auto" id="tab-nav"><button onclick="switchTab('dashboard')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition tab-active" data-tab="dashboard"> <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Dashboard </button> <button onclick="switchTab('worklog')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="worklog"> <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Work Log </button> <button onclick="switchTab('inventory')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="inventory"> <i data-lucide="package" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Inventory </button> <button onclick="switchTab('vendor')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="vendor"> <i data-lucide="truck" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Vendors </button> <button onclick="switchTab('weekly')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="weekly"> <i data-lucide="bar-chart-3" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Weekly </button> <button onclick="switchTab('projects')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="projects"> <i data-lucide="folder-kanban" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Projects </button>
     </nav>
    </header><!-- Content -->
-   <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
-    <!-- DASHBOARD TAB -->
+   <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6"><!-- DASHBOARD TAB -->
     <section id="tab-dashboard" class="tab-content">
      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8" id="dashboard-stats"></div>
      <h2 class="text-lg font-bold text-txt mb-4">Quick Actions</h2>
-     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
-      <button onclick="switchTab('worklog');openModal('worklog')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="plus-circle" class="w-6 h-6 text-brand-500"></i>New Work Log </button> <button onclick="switchTab('inventory');openModal('inventory')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="package-plus" class="w-6 h-6 text-brand-500"></i>Add Asset </button> <button onclick="switchTab('vendor');openModal('vendor')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="ticket" class="w-6 h-6 text-brand-500"></i>New Vendor Ticket </button> <button onclick="switchTab('weekly')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="file-text" class="w-6 h-6 text-brand-500"></i>Weekly Summary </button> <button onclick="switchTab('projects');openModal('project')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="folder-plus" class="w-6 h-6 text-brand-500"></i>New Project </button>
+     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8"><button onclick="switchTab('worklog');openModal('worklog')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="plus-circle" class="w-6 h-6 text-brand-500"></i>New Work Log </button> <button onclick="switchTab('inventory');openModal('inventory')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="package-plus" class="w-6 h-6 text-brand-500"></i>Add Asset </button> <button onclick="switchTab('vendor');openModal('vendor')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="ticket" class="w-6 h-6 text-brand-500"></i>New Vendor Ticket </button> <button onclick="switchTab('weekly')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="file-text" class="w-6 h-6 text-brand-500"></i>Weekly Summary </button> <button onclick="switchTab('projects');openModal('project')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="folder-plus" class="w-6 h-6 text-brand-500"></i>New Project </button>
      </div><!-- Recent Activity -->
      <h2 class="text-lg font-bold text-txt mb-4">Recent Activity</h2>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -109,8 +103,7 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Daily Work Log</h2><button onclick="openModal('worklog')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Entry </button>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4">
-      <input type="date" id="wl-filter-date" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"> <select id="wl-filter-cat" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="wl-filter-status" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="wl-filter-loc" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
+     <div class="flex flex-wrap gap-2 mb-4"><input type="date" id="wl-filter-date" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"> <select id="wl-filter-cat" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="wl-filter-status" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="wl-filter-loc" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
      </div>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div class="overflow-x-auto" id="worklog-table"></div>
@@ -119,13 +112,11 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     <section id="tab-inventory" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Inventory Tracker</h2>
-      <div class="flex gap-2">
-       <button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
+      <div class="flex gap-2"><button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
       </div>
      </div>
      <div class="flex flex-wrap gap-2 mb-4">
-      <div class="relative">
-       <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
+      <div class="relative"><i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
       </div><select id="inv-filter-type" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Types</option></select> <select id="inv-filter-status" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select>
      </div>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -135,12 +126,10 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     <section id="tab-vendor" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Vendor Tracker</h2>
-      <div class="flex gap-2">
-       <button onclick="openVendorManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Manage Vendors </button><button onclick="openModal('vendor')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Ticket </button>
+      <div class="flex gap-2"><button onclick="openVendorManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Manage Vendors </button><button onclick="openModal('vendor')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Ticket </button>
       </div>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4">
-      <select id="vn-filter-status" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="vn-filter-vendor" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Vendors</option></select> <select id="vn-filter-priority" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
+     <div class="flex flex-wrap gap-2 mb-4"><select id="vn-filter-status" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="vn-filter-vendor" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Vendors</option></select> <select id="vn-filter-priority" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
      </div><!-- Overdue highlight -->
      <div id="overdue-section" class="mb-4 hidden">
       <div class="bg-red-50 border border-red-200 rounded-xl p-4">
@@ -165,8 +154,7 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     <section id="tab-projects" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Project Tracking</h2>
-      <div class="flex gap-2">
-       <button onclick="openProjectCategoryManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Categories </button><button onclick="openModal('project')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Project </button>
+      <div class="flex gap-2"><button onclick="openProjectCategoryManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Categories </button><button onclick="openModal('project')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Project </button>
       </div>
      </div><!-- Kanban -->
      <h3 class="text-sm font-bold text-txt mb-3">Project Board</h3>
@@ -805,13 +793,13 @@ function deleteProject(id) {
 function openProjectCategoryManager() {
   const container = document.getElementById('modal-container');
   container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
-    <div class="modal-box max-w-md">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-lg font-bold text-txt">Manage Project Categories</h3>
+    <div class="modal-box max-w-2xl max-h-[80vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-4 sticky top-0 bg-white pb-4">
+        <h3 class="text-lg font-bold text-txt">Manage Project Categories & Sub-Types</h3>
         <button onclick="closeModal()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       
-      <div class="mb-4">
+      <div class="mb-6 pb-4 border-b border-gray-200">
         <label class="block text-xs font-semibold text-muted mb-2">Add New Category</label>
         <div class="flex gap-2">
           <input type="text" id="new-proj-category" placeholder="Enter category name..." class="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm" />
@@ -819,25 +807,56 @@ function openProjectCategoryManager() {
         </div>
       </div>
 
-      <div class="mb-2">
-        <label class="block text-xs font-semibold text-muted mb-2">Existing Categories</label>
-        <div class="space-y-1 max-h-64 overflow-y-auto border border-gray-200 rounded-lg p-2">
-          ${projCategories.map(category => {
-            const projCount = projects.filter(p => p.category === category).length;
-            return `
-            <div class="flex items-center justify-between gap-2 p-2 bg-gray-50 rounded hover:bg-gray-100">
-              <div>
-                <span class="text-sm text-txt font-medium">${category}</span>
-                <span class="text-xs text-muted ml-2">(${projCount} project${projCount !== 1 ? 's' : ''})</span>
+      <div class="space-y-3" id="categories-list">
+        ${projCategories.map(category => {
+          const projCount = projects.filter(p => p.category === category).length;
+          const subTypes = projSubTypes[category] || [];
+          return `
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <div class="bg-gray-50 p-3 flex items-center justify-between cursor-pointer hover:bg-gray-100 transition" onclick="toggleCategoryExpand('cat-${category.replace(/[^a-z0-9]/gi, '_')}')">
+                <div class="flex items-center gap-3 flex-1">
+                  <i data-lucide="chevron-right" class="w-4 h-4 text-muted category-toggle" id="chevron-cat-${category.replace(/[^a-z0-9]/gi, '_')}"></i>
+                  <div>
+                    <div class="text-sm font-semibold text-txt">${category}</div>
+                    <div class="text-xs text-muted">${subTypes.length} sub-type${subTypes.length !== 1 ? 's' : ''} • ${projCount} project${projCount !== 1 ? 's' : ''}</div>
+                  </div>
+                </div>
+                <button onclick="deleteProjectCategory('${category.replace(/'/g, "\\'")}', event)" class="text-danger hover:text-critical text-xs font-medium p-1 hover:bg-red-50 rounded"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
               </div>
-              <button onclick="deleteProjectCategory('${category.replace(/'/g, "\\'")}')" class="text-danger hover:text-critical text-xs font-medium"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+              
+              <div class="hidden bg-white p-4 border-t border-gray-200" id="cat-${category.replace(/[^a-z0-9]/gi, '_')}">
+                <div class="mb-4 pb-4 border-b border-gray-200">
+                  <label class="block text-xs font-semibold text-muted mb-2">Add Sub-Type</label>
+                  <div class="flex gap-2">
+                    <input type="text" id="new-subtype-${category.replace(/[^a-z0-9]/gi, '_')}" placeholder="e.g., Wi-Fi Upgrade, HVAC, Phone Line..." class="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+                    <button onclick="addSubType('${category.replace(/'/g, "\\'")}', '${category.replace(/[^a-z0-9]/gi, '_')}')" class="px-3 py-2 rounded-lg bg-brand-500 text-white text-sm font-semibold hover:bg-brand-600"><i data-lucide="plus" class="w-4 h-4"></i></button>
+                  </div>
+                </div>
+
+                <div class="space-y-2" id="subtypes-${category.replace(/[^a-z0-9]/gi, '_')}">
+                  ${subTypes.length ? subTypes.map((subType, idx) => {
+                    const usedCount = projects.filter(p => p.category === category && p.subType === subType).length;
+                    return `
+                      <div class="flex items-center justify-between gap-2 p-2 bg-blue-50 rounded hover:bg-blue-100 transition">
+                        <div class="flex-1">
+                          <span class="text-sm text-txt">${subType}</span>
+                          ${usedCount ? `<span class="text-xs text-muted ml-2">(used in ${usedCount} project${usedCount !== 1 ? 's' : ''})</span>` : ''}
+                        </div>
+                        <div class="flex gap-1">
+                          <button onclick="editSubType('${category.replace(/'/g, "\\'")}', '${subType.replace(/'/g, "\\'")}', '${idx}')" class="text-xs px-2 py-1 rounded bg-white border border-gray-200 text-brand-600 hover:bg-brand-50 font-medium"><i data-lucide="edit-2" class="w-3 h-3 inline mr-1"></i>Edit</button>
+                          <button onclick="deleteSubType('${category.replace(/'/g, "\\'")}', '${subType.replace(/'/g, "\\'")}', ${usedCount})" class="text-xs px-2 py-1 rounded bg-white border border-gray-200 text-danger hover:bg-red-50 font-medium"><i data-lucide="trash-2" class="w-3 h-3"></i></button>
+                        </div>
+                      </div>
+                    `;
+                  }).join('') : '<div class="text-xs text-muted p-2">No sub-types yet. Add one above.</div>'}
+                </div>
+              </div>
             </div>
           `;
-          }).join('')}
-        </div>
+        }).join('')}
       </div>
 
-      <div class="flex justify-end gap-2 pt-4">
+      <div class="flex justify-end gap-2 pt-4 mt-6 border-t border-gray-200">
         <button onclick="closeModal()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Close</button>
       </div>
     </div>
@@ -873,7 +892,8 @@ function addProjectCategory() {
   openProjectCategoryManager();
 }
 
-function deleteProjectCategory(categoryName) {
+function deleteProjectCategory(categoryName, event) {
+  event.stopPropagation();
   const inUse = projects.some(p => p.category === categoryName);
   if (inUse) {
     const count = projects.filter(p => p.category === categoryName).length;
@@ -899,6 +919,149 @@ function deleteProjectCategory(categoryName) {
     return;
   }
   projCategories = projCategories.filter(c => c !== categoryName);
+  delete projSubTypes[categoryName];
+  openProjectCategoryManager();
+}
+
+function toggleCategoryExpand(catId) {
+  const section = document.getElementById(catId);
+  const chevron = document.getElementById('chevron-' + catId);
+  if (section) {
+    section.classList.toggle('hidden');
+    if (chevron) {
+      chevron.style.transform = section.classList.contains('hidden') ? 'rotate(0)' : 'rotate(90deg)';
+      chevron.style.transition = 'transform 0.2s ease';
+    }
+  }
+}
+
+function addSubType(categoryName, safeCatId) {
+  const input = document.getElementById(`new-subtype-${safeCatId}`);
+  const value = input.value.trim();
+  if (!value) return;
+
+  if (!projSubTypes[categoryName]) {
+    projSubTypes[categoryName] = [];
+  }
+
+  if (projSubTypes[categoryName].includes(value)) {
+    const container = document.getElementById('modal-container');
+    container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+      <div class="modal-box max-w-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-txt">Sub-Type Exists</h3>
+          <button onclick="closeModal();openProjectCategoryManager()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="mb-4">
+          <p class="text-sm text-txt">This sub-type already exists for <strong>${categoryName}</strong>.</p>
+        </div>
+        <div class="flex justify-end gap-2">
+          <button onclick="closeModal();openProjectCategoryManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Back</button>
+        </div>
+      </div>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+
+  projSubTypes[categoryName].push(value);
+  input.value = '';
+  openProjectCategoryManager();
+}
+
+function editSubType(categoryName, oldSubType, idx) {
+  const container = document.getElementById('modal-container');
+  container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box max-w-sm">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-txt">Edit Sub-Type</h3>
+        <button onclick="closeModal();openProjectCategoryManager()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-muted mb-2">Sub-Type Name</label>
+        <input type="text" id="edit-subtype-input" value="${oldSubType}" placeholder="Enter sub-type name..." class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+      </div>
+      <div class="flex justify-end gap-2">
+        <button onclick="closeModal();openProjectCategoryManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Cancel</button>
+        <button onclick="saveSubTypeEdit('${categoryName.replace(/'/g, "\\'")}', '${oldSubType.replace(/'/g, "\\'")}', ${idx})" class="px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700">Save Changes</button>
+      </div>
+    </div>
+  </div>`;
+  document.getElementById('edit-subtype-input').focus();
+  document.getElementById('edit-subtype-input').select();
+  lucide.createIcons();
+}
+
+function saveSubTypeEdit(categoryName, oldSubType, idx) {
+  const newValue = document.getElementById('edit-subtype-input').value.trim();
+  if (!newValue) return;
+
+  if (newValue === oldSubType) {
+    closeModal();
+    openProjectCategoryManager();
+    return;
+  }
+
+  const subTypes = projSubTypes[categoryName];
+  if (subTypes.includes(newValue)) {
+    const container = document.getElementById('modal-container');
+    container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+      <div class="modal-box max-w-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-txt">Name Already Exists</h3>
+          <button onclick="editSubType('${categoryName.replace(/'/g, "\\'")}', '${oldSubType.replace(/'/g, "\\'")}', ${idx})" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="mb-4">
+          <p class="text-sm text-txt">This sub-type name is already in use.</p>
+        </div>
+        <div class="flex justify-end gap-2">
+          <button onclick="editSubType('${categoryName.replace(/'/g, "\\'")}', '${oldSubType.replace(/'/g, "\\'")}', ${idx})" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Back</button>
+        </div>
+      </div>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+
+  // Update projects that use this sub-type
+  projects.forEach(p => {
+    if (p.category === categoryName && p.subType === oldSubType) {
+      p.subType = newValue;
+    }
+  });
+
+  // Update sub-types array
+  subTypes[idx] = newValue;
+  closeModal();
+  openProjectCategoryManager();
+}
+
+function deleteSubType(categoryName, subType, usedCount) {
+  if (usedCount > 0) {
+    const container = document.getElementById('modal-container');
+    container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+      <div class="modal-box max-w-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-txt">Cannot Delete Sub-Type</h3>
+          <button onclick="closeModal();openProjectCategoryManager()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="mb-4">
+          <p class="text-sm text-txt mb-3">This sub-type is in use by <strong>${usedCount} project(s)</strong>. You must remove or reassign those projects first.</p>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+            <div class="text-xs text-red-700"><strong>${categoryName} → ${subType}</strong></div>
+            <div class="text-xs text-red-700 mt-1">${usedCount} project${usedCount !== 1 ? 's' : ''}</div>
+          </div>
+        </div>
+        <div class="flex justify-end gap-2">
+          <button onclick="closeModal();openProjectCategoryManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Back to Manager</button>
+        </div>
+      </div>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+
+  projSubTypes[categoryName] = projSubTypes[categoryName].filter(st => st !== subType);
   openProjectCategoryManager();
 }
 
@@ -1105,5 +1268,5 @@ if (window.elementSdk) {
 renderDashboard();
 lucide.createIcons();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed3f726d246b731',t:'MTc3NjM1MDYzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed40450f31f281b',t:'MTc3NjM1MTE3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
