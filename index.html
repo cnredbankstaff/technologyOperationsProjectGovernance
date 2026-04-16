@@ -156,6 +156,8 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
       <h2 class="text-lg font-bold text-txt">Project Tracking</h2>
       <div class="flex gap-2"><button onclick="openProjectCategoryManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Categories </button><button onclick="openModal('project')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Project </button>
       </div>
+     </div>
+     <div class="flex flex-wrap gap-2 mb-4"><select id="proj-filter-status" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="proj-filter-category" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="proj-filter-priority" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
      </div><!-- Kanban -->
      <h3 class="text-sm font-bold text-txt mb-3">Project Board</h3>
      <div class="flex gap-3 overflow-x-auto pb-4 mb-6" id="kanban-board"></div><!-- Project Table -->
@@ -1130,8 +1132,8 @@ function openModal(type, existing) {
     const categoryValue = existing?.category || '';
     const subTypesForCategory = getSubTypesForCategory(categoryValue);
     fields = [
-      {name:'name',label:'Project Name',type:'text',value:existing?.name||''},
-      {name:'category',label:'Category',type:'select',options:projCategories,value:existing?.category||'',half:true,onChange:'updateSubTypes'},
+      {name:'name',label:'Project Name',type:'text',value:existing?.name||'',required:true},
+      {name:'category',label:'Category',type:'select',options:projCategories,value:existing?.category||'',half:true,required:true,onChange:'updateSubTypes'},
       {name:'subType',label:'Sub-Type',type:'select',options:['', ...subTypesForCategory],value:existing?.subType||'',half:true},
       {name:'owner',label:'Owner',type:'text',value:existing?.owner||'',half:true},
       {name:'description',label:'Description',type:'textarea',value:existing?.description||''},
@@ -1142,6 +1144,15 @@ function openModal(type, existing) {
       {name:'notes',label:'Notes',type:'textarea',value:existing?.notes||''},
     ];
     onSave = (vals) => {
+      // Validate required fields
+      if (!vals.name || !vals.name.trim()) {
+        showModalError('Project Name is required.');
+        return;
+      }
+      if (!vals.category) {
+        showModalError('Category is required.');
+        return;
+      }
       vals.lastUpdated = new Date().toISOString().split('T')[0];
       if (isEdit) { Object.assign(existing, vals); }
       else { projects.push({id:nextId.proj++,...vals}); }
@@ -1178,17 +1189,20 @@ function openModal(type, existing) {
 
   document.getElementById('modal-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    console.log('[DEBUG] Form submitted for type:', type);
     const fd = new FormData(e.target);
     const vals = {};
     fields.forEach(f => { vals[f.name] = f.type === 'number' ? parseFloat(fd.get(f.name)) : fd.get(f.name); });
-    onSave(vals);
+    console.log('[DEBUG] Form values collected:', vals);
+    console.log('[DEBUG] Projects array before save:', projects.length, projects);
     closeModal();
+    setTimeout(() => {
+      onSave(vals);
+      console.log('[DEBUG] Projects array after onSave:', projects.length, projects);
+      console.log('[DEBUG] Modal closed, render complete');
+    }, 0);
   });
   lucide.createIcons();
-}
-
-function closeModal() {
-  document.getElementById('modal-container').innerHTML = '';
 }
 
 function updateSubTypes(categorySelect) {
@@ -1200,14 +1214,40 @@ function updateSubTypes(categorySelect) {
   }
 }
 
+function showModalError(message) {
+  const form = document.getElementById('modal-form');
+  if (!form) return;
+  let errorEl = form.querySelector('.modal-error-message');
+  if (!errorEl) {
+    errorEl = document.createElement('div');
+    errorEl.className = 'modal-error-message';
+    form.insertBefore(errorEl, form.firstChild);
+  }
+  errorEl.innerHTML = `<div class="bg-red-50 border border-red-200 rounded-lg p-3 mb-4"><div class="text-sm text-red-700 font-medium">${message}</div></div>`;
+}
+
+function closeModal() {
+  document.getElementById('modal-container').innerHTML = '';
+}
+
 // ============ HELPERS ============
 function populateSelect(id, options, allLabel) {
   const el = document.getElementById(id);
-  const current = el.value;
-  if (el.options.length <= 1) {
-    el.innerHTML = `<option value="">${allLabel}</option>` + options.map(o => `<option value="${o}">${o}</option>`).join('');
+  if (!el) return; // Exit safely if element doesn't exist
+  
+  // Check if already populated to avoid resetting
+  if (el.options && el.options.length > 1) {
+    return; // Already populated, don't reset
   }
-  el.value = current;
+  
+  // Populate the select safely
+  try {
+    const current = el.value || '';
+    el.innerHTML = `<option value="">${allLabel}</option>` + options.map(o => `<option value="${o}">${o}</option>`).join('');
+    el.value = current;
+  } catch (e) {
+    console.error('Error populating select ' + id + ':', e);
+  }
 }
 
 // ============ ELEMENT SDK ============
@@ -1268,5 +1308,5 @@ if (window.elementSdk) {
 renderDashboard();
 lucide.createIcons();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed40450f31f281b',t:'MTc3NjM1MTE3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed46c9d170e8095',t:'MTc3NjM1NTQ1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
