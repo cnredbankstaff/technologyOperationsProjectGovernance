@@ -111,7 +111,9 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     </section><!-- INVENTORY TAB -->
     <section id="tab-inventory" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-      <h2 class="text-lg font-bold text-txt">Inventory Tracker</h2><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
+      <h2 class="text-lg font-bold text-txt">Inventory Tracker</h2>
+      <div class="flex gap-2"><button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
+      </div>
      </div>
      <div class="flex flex-wrap gap-2 mb-4">
       <div class="relative"><i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
@@ -296,9 +298,9 @@ function renderWorklog() {
   if (fs) data = data.filter(d => d.status === fs);
   if (fl) data = data.filter(d => d.location === fl);
 
-  document.getElementById('worklog-table').innerHTML = `<table><thead><tr><th>Date</th><th>Hours</th><th>Location</th><th>Category</th><th>Description</th><th>Status</th><th>Action</th></tr></thead><tbody>${
+  document.getElementById('worklog-table').innerHTML = `<table><thead><tr><th>Date</th><th>Hours</th><th>Location</th><th>Category</th><th>Description</th><th>Status</th><th>Actions</th></tr></thead><tbody>${
     data.map(r => `<tr><td>${r.date}</td><td>${r.hours}h</td><td>${r.location}</td><td>${r.category}</td><td class="max-w-xs truncate">${r.description}</td><td>${statusBadge(r.status)}</td>
-    <td><button onclick="editWorklog(${r.id})" class="text-brand-600 hover:text-brand-800 text-xs font-medium">Edit</button></td></tr>`).join('')
+    <td><button onclick="editWorklog(${r.id})" class="text-brand-600 hover:text-brand-800 text-xs font-medium">Edit</button> <button onclick="confirmDeleteWorklog(${r.id})" class="text-danger hover:text-critical text-xs font-medium">Delete</button></td></tr>`).join('')
   }</tbody></table>`;
   lucide.createIcons();
 }
@@ -306,6 +308,41 @@ function renderWorklog() {
 function editWorklog(id) {
   const item = workLogs.find(w => w.id === id);
   if (item) openModal('worklog', item);
+}
+
+function confirmDeleteWorklog(id) {
+  const item = workLogs.find(w => w.id === id);
+  if (!item) return;
+
+  const container = document.getElementById('modal-container');
+  container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-txt">Delete Work Log Entry?</h3>
+        <button onclick="closeModal()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="mb-6">
+        <p class="text-sm text-txt mb-3">Are you sure you want to delete this entry?</p>
+        <div class="bg-gray-50 rounded-lg p-3 border border-gray-200">
+          <div class="text-xs text-muted mb-1"><strong>Date:</strong> ${item.date}</div>
+          <div class="text-xs text-muted mb-1"><strong>Category:</strong> ${item.category}</div>
+          <div class="text-xs text-muted"><strong>Description:</strong> ${item.description}</div>
+        </div>
+        <p class="text-xs text-danger mt-3">This action cannot be undone.</p>
+      </div>
+      <div class="flex justify-end gap-2">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Cancel</button>
+        <button onclick="deleteWorklog(${id})" class="px-5 py-2 rounded-lg bg-danger text-white text-sm font-semibold hover:bg-critical">Delete Entry</button>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function deleteWorklog(id) {
+  workLogs = workLogs.filter(w => w.id !== id);
+  renderWorklog();
+  closeModal();
 }
 
 // ============ INVENTORY ============
@@ -324,7 +361,7 @@ function renderInventory() {
   if (fs) data = data.filter(d => d.status === fs);
   if (fl) data = data.filter(d => d.location === fl);
 
-  document.getElementById('inventory-table').innerHTML = `<table><thead><tr><th>Asset ID</th><th>Type</th><th>Serial</th><th>Location</th><th>Status</th><th>Assigned To</th><th>Updated</th><th>Actions</th></tr></thead><tbody>${
+  document.getElementById('inventory-table').innerHTML = `<table><thead><tr><th>Device ID</th><th>Type</th><th>Serial</th><th>Location</th><th>Status</th><th>Assigned To</th><th>Updated</th><th>Actions</th></tr></thead><tbody>${
     data.map(r => `<tr><td class="font-mono text-xs">${r.assetId}</td><td>${r.type}</td><td class="font-mono text-xs">${r.serial}</td><td>${r.location}</td><td>${statusBadge(r.status)}</td><td>${r.assignedTo||'—'}</td><td>${r.lastUpdated}</td>
     <td class="flex gap-1 flex-wrap">
       <button onclick="editInventory(${r.id})" class="text-xs text-brand-600 hover:underline">Edit</button>
@@ -334,6 +371,85 @@ function renderInventory() {
     </td></tr>`).join('')
   }</tbody></table>`;
   lucide.createIcons();
+}
+
+function openDeviceTypeManager() {
+  const container = document.getElementById('modal-container');
+  container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box max-w-md">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-txt">Manage Device Types</h3>
+        <button onclick="closeModal()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-muted mb-2">Add New Type</label>
+        <div class="flex gap-2">
+          <input type="text" id="new-device-type" placeholder="Enter device type..." class="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+          <button onclick="addDeviceType()" class="px-3 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700"><i data-lucide="plus" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label class="block text-xs font-semibold text-muted mb-2">Existing Types</label>
+        <div class="space-y-1 max-h-64 overflow-y-auto border border-gray-200 rounded-lg p-2">
+          ${deviceTypes.map(type => `
+            <div class="flex items-center justify-between gap-2 p-2 bg-gray-50 rounded hover:bg-gray-100">
+              <span class="text-sm text-txt">${type}</span>
+              <button onclick="deleteDeviceType('${type}')" class="text-danger hover:text-critical text-xs font-medium"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-4">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Close</button>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function addDeviceType() {
+  const input = document.getElementById('new-device-type');
+  const value = input.value.trim();
+  if (!value) return;
+  if (deviceTypes.includes(value)) {
+    alert('This device type already exists.');
+    return;
+  }
+  deviceTypes.push(value);
+  input.value = '';
+  openDeviceTypeManager();
+}
+
+function deleteDeviceType(type) {
+  const inUse = inventory.some(i => i.type === type);
+  if (inUse) {
+    const count = inventory.filter(i => i.type === type).length;
+    const container = document.getElementById('modal-container');
+    container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+      <div class="modal-box max-w-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-txt">Cannot Delete Type</h3>
+          <button onclick="closeModal()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div class="mb-4">
+          <p class="text-sm text-txt mb-3">This device type is in use by <strong>${count} device(s)</strong>. You must remove or change those devices first.</p>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+            <div class="text-xs text-red-700"><strong>${type}:</strong> ${count} device(s)</div>
+          </div>
+        </div>
+        <div class="flex justify-end gap-2">
+          <button onclick="closeModal();openDeviceTypeManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Back to Manager</button>
+        </div>
+      </div>
+    </div>`;
+    lucide.createIcons();
+    return;
+  }
+  deviceTypes = deviceTypes.filter(t => t !== type);
+  openDeviceTypeManager();
 }
 
 function editInventory(id) {
@@ -663,5 +779,5 @@ if (window.elementSdk) {
 renderDashboard();
 lucide.createIcons();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed374b1e529b731',t:'MTc3NjM0NTI5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed3bca071b939a6',t:'MTc3NjM0ODI0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
