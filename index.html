@@ -615,7 +615,33 @@ function deleteVendorType(vendorName) {
     lucide.createIcons();
     return;
   }
-  vendors = vendors.filter(v => v !== vendorName);
+
+  // Show confirmation before deleting unused vendor
+  const container = document.getElementById('modal-container');
+  container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box max-w-sm">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-txt">Delete Vendor?</h3>
+        <button onclick="closeModal();openVendorManager()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="mb-6">
+        <p class="text-sm text-txt mb-3">Are you sure you want to delete <strong>${vendorName}</strong>?</p>
+        <p class="text-xs text-muted">This action cannot be undone.</p>
+      </div>
+      <div class="flex justify-end gap-2">
+        <button onclick="closeModal();openVendorManager()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Cancel</button>
+        <button onclick="confirmVendorDelete('${vendorName.replace(/'/g, "\\'")}')" class="px-5 py-2 rounded-lg bg-danger text-white text-sm font-semibold hover:bg-critical">Delete Vendor</button>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function confirmVendorDelete(vendorName) {
+  const idx = vendors.indexOf(vendorName);
+  if (idx > -1) vendors.splice(idx, 1);
+  closeModal();
+  renderVendor();
   openVendorManager();
 }
 
@@ -1235,16 +1261,16 @@ function populateSelect(id, options, allLabel) {
   const el = document.getElementById(id);
   if (!el) return; // Exit safely if element doesn't exist
   
-  // Check if already populated to avoid resetting
-  if (el.options && el.options.length > 1) {
-    return; // Already populated, don't reset
-  }
-  
-  // Populate the select safely
+  // Always repopulate to reflect current state (deleted items, etc.)
   try {
     const current = el.value || '';
     el.innerHTML = `<option value="">${allLabel}</option>` + options.map(o => `<option value="${o}">${o}</option>`).join('');
-    el.value = current;
+    // Only restore value if it still exists in options
+    if (options.includes(current)) {
+      el.value = current;
+    } else {
+      el.value = '';
+    }
   } catch (e) {
     console.error('Error populating select ' + id + ':', e);
   }
@@ -1308,5 +1334,5 @@ if (window.elementSdk) {
 renderDashboard();
 lucide.createIcons();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed46c9d170e8095',t:'MTc3NjM1NTQ1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed482f6d5b38095',t:'MTc3NjM1NjM2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
