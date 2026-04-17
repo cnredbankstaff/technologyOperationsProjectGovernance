@@ -68,31 +68,37 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-surface">
-  <div id="app" class="h-full flex flex-col overflow-auto"><!-- Top Nav -->
+  <div id="app" class="h-full flex flex-col overflow-auto">
+   <!-- Top Nav -->
    <header id="main-header" class="bg-white border-b border-gray-200 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
      <div class="flex items-center gap-3">
-      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center"><i data-lucide="monitor" class="w-5 h-5 text-white"></i>
+      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center">
+       <i data-lucide="monitor" class="w-5 h-5 text-white"></i>
       </div>
       <div>
        <h1 id="el-title" class="text-lg font-bold text-txt leading-tight">Technology Work Log</h1>
        <p id="el-school" class="text-xs text-muted leading-tight">Horizon Charter Academy</p>
       </div>
      </div>
-     <div class="flex items-center gap-3"><span id="el-consultant" class="hidden sm:inline text-sm text-muted">IT Consultant</span>
-      <div class="w-8 h-8 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center font-bold text-sm">
+     <div class="flex items-center gap-3">
+      <span id="el-consultant" class="hidden sm:inline text-sm text-muted">IT Consultant</span>
+      <div id="consultant-avatar" class="w-8 h-8 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center font-bold text-sm">
        TC
       </div>
      </div>
     </div><!-- Tabs -->
-    <nav class="max-w-7xl mx-auto px-4 flex gap-1 overflow-x-auto" id="tab-nav"><button onclick="switchTab('dashboard')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition tab-active" data-tab="dashboard"> <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Dashboard </button> <button onclick="switchTab('worklog')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="worklog"> <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Work Log </button> <button onclick="switchTab('inventory')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="inventory"> <i data-lucide="package" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Inventory </button> <button onclick="switchTab('vendor')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="vendor"> <i data-lucide="truck" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Vendors </button> <button onclick="switchTab('weekly')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="weekly"> <i data-lucide="bar-chart-3" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Weekly </button> <button onclick="switchTab('projects')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="projects"> <i data-lucide="folder-kanban" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Projects </button>
+    <nav class="max-w-7xl mx-auto px-4 flex gap-1 overflow-x-auto" id="tab-nav">
+     <button onclick="switchTab('dashboard')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition tab-active" data-tab="dashboard"> <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Dashboard </button> <button onclick="switchTab('worklog')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="worklog"> <i data-lucide="clipboard-list" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Work Log </button> <button onclick="switchTab('inventory')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="inventory"> <i data-lucide="package" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Inventory </button> <button onclick="switchTab('vendor')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="vendor"> <i data-lucide="truck" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Vendors </button> <button onclick="switchTab('weekly')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="weekly"> <i data-lucide="bar-chart-3" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Weekly </button> <button onclick="switchTab('projects')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="projects"> <i data-lucide="folder-kanban" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Projects </button> <button onclick="switchTab('settings')" class="tab-btn px-4 py-2.5 text-sm whitespace-nowrap text-muted hover:text-brand-600 transition" data-tab="settings"> <i data-lucide="settings" class="w-4 h-4 inline mr-1 -mt-0.5"></i>Settings </button>
     </nav>
    </header><!-- Content -->
-   <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6"><!-- DASHBOARD TAB -->
+   <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+    <!-- DASHBOARD TAB -->
     <section id="tab-dashboard" class="tab-content">
      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8" id="dashboard-stats"></div>
      <h2 class="text-lg font-bold text-txt mb-4">Quick Actions</h2>
-     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8"><button onclick="switchTab('worklog');openModal('worklog')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="plus-circle" class="w-6 h-6 text-brand-500"></i>New Work Log </button> <button onclick="switchTab('inventory');openModal('inventory')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="package-plus" class="w-6 h-6 text-brand-500"></i>Add Asset </button> <button onclick="switchTab('vendor');openModal('vendor')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="ticket" class="w-6 h-6 text-brand-500"></i>New Vendor Ticket </button> <button onclick="switchTab('weekly')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="file-text" class="w-6 h-6 text-brand-500"></i>Weekly Summary </button> <button onclick="switchTab('projects');openModal('project')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="folder-plus" class="w-6 h-6 text-brand-500"></i>New Project </button>
+     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+      <button onclick="switchTab('worklog');openModal('worklog')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="plus-circle" class="w-6 h-6 text-brand-500"></i>New Work Log </button> <button onclick="switchTab('inventory');openModal('inventory')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="package-plus" class="w-6 h-6 text-brand-500"></i>Add Asset </button> <button onclick="switchTab('vendor');openModal('vendor')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="ticket" class="w-6 h-6 text-brand-500"></i>New Vendor Ticket </button> <button onclick="switchTab('weekly')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="file-text" class="w-6 h-6 text-brand-500"></i>Weekly Summary </button> <button onclick="switchTab('projects');openModal('project')" class="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center gap-2 hover:border-brand-400 transition text-sm font-medium text-txt"> <i data-lucide="folder-plus" class="w-6 h-6 text-brand-500"></i>New Project </button>
      </div><!-- Recent Activity -->
      <h2 class="text-lg font-bold text-txt mb-4">Recent Activity</h2>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -103,7 +109,8 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Daily Work Log</h2><button onclick="openModal('worklog')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Entry </button>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4"><input type="date" id="wl-filter-date" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"> <select id="wl-filter-cat" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="wl-filter-status" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="wl-filter-loc" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
+     <div class="flex flex-wrap gap-2 mb-4">
+      <input type="date" id="wl-filter-date" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"> <select id="wl-filter-cat" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="wl-filter-status" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="wl-filter-loc" onchange="renderWorklog()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Locations</option></select>
      </div>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div class="overflow-x-auto" id="worklog-table"></div>
@@ -112,11 +119,13 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     <section id="tab-inventory" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Inventory Tracker</h2>
-      <div class="flex gap-2"><button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
+      <div class="flex gap-2">
+       <button onclick="openDeviceTypeManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Device Types </button><button onclick="openModal('inventory')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>Add Asset </button>
       </div>
      </div>
      <div class="flex flex-wrap gap-2 mb-4">
-      <div class="relative"><i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
+      <div class="relative">
+       <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2 text-muted"></i> <input type="text" id="inv-search" oninput="renderInventory()" placeholder="Search assets..." class="border border-gray-200 rounded-lg pl-9 pr-3 py-1.5 text-sm w-48">
       </div><select id="inv-filter-type" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Types</option></select> <select id="inv-filter-status" onchange="renderInventory()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select>
      </div>
      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -126,10 +135,12 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
     <section id="tab-vendor" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Vendor Tracker</h2>
-      <div class="flex gap-2"><button onclick="openVendorManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Manage Vendors </button><button onclick="openModal('vendor')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Ticket </button>
+      <div class="flex gap-2">
+       <button onclick="openVendorManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Manage Vendors </button><button onclick="openModal('vendor')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Ticket </button>
       </div>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4"><select id="vn-filter-status" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="vn-filter-vendor" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Vendors</option></select> <select id="vn-filter-priority" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
+     <div class="flex flex-wrap gap-2 mb-4">
+      <select id="vn-filter-status" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="vn-filter-vendor" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Vendors</option></select> <select id="vn-filter-priority" onchange="renderVendor()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
      </div><!-- Overdue highlight -->
      <div id="overdue-section" class="mb-4 hidden">
       <div class="bg-red-50 border border-red-200 rounded-xl p-4">
@@ -150,14 +161,31 @@ input,select,textarea{font-family:'DM Sans',sans-serif;font-size:.875rem}
      <div class="bg-white rounded-xl border border-gray-200 p-5">
       <h3 class="text-sm font-bold text-txt mb-3">Weekly Notes / Highlights</h3><textarea id="weekly-notes" rows="4" class="w-full border border-gray-200 rounded-lg p-3 text-sm resize-none" placeholder="Enter weekly notes for leadership review..."></textarea>
      </div>
-    </section><!-- PROJECTS TAB -->
+    </section><!-- PROJECTS TAB --> <!-- SETTINGS TAB -->
+    <section id="tab-settings" class="tab-content hidden">
+     <h2 class="text-lg font-bold text-txt mb-4">Dashboard Settings</h2>
+     <div class="bg-white rounded-xl border border-gray-200 p-6 max-w-2xl">
+      <form id="settings-form" class="space-y-4">
+       <div><label class="block text-sm font-semibold text-txt mb-1">School Name</label> <input type="text" id="setting-school" placeholder="Enter school name" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm">
+       </div>
+       <div><label class="block text-sm font-semibold text-txt mb-1">Consultant Name</label> <input type="text" id="setting-consultant" placeholder="Enter consultant name" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm">
+       </div>
+       <div><label class="block text-sm font-semibold text-txt mb-1">Dashboard Title</label> <input type="text" id="setting-title" placeholder="Enter dashboard title" class="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm">
+       </div>
+       <div class="flex justify-end gap-2 pt-4"><button type="button" onclick="resetSettings()" class="px-4 py-2 rounded-lg border border-gray-200 text-sm font-medium text-muted hover:bg-gray-50">Reset to Default</button> <button type="submit" class="px-5 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700">Save Settings</button>
+       </div>
+      </form>
+     </div>
+    </section>
     <section id="tab-projects" class="tab-content hidden">
      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
       <h2 class="text-lg font-bold text-txt">Project Tracking</h2>
-      <div class="flex gap-2"><button onclick="openProjectCategoryManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Categories </button><button onclick="openModal('project')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Project </button>
+      <div class="flex gap-2">
+       <button onclick="openProjectCategoryManager()" class="bg-white border border-gray-200 text-txt px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition flex items-center gap-2 w-fit"> <i data-lucide="settings" class="w-4 h-4"></i>Categories </button><button onclick="openModal('project')" class="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-brand-700 transition flex items-center gap-2 w-fit"> <i data-lucide="plus" class="w-4 h-4"></i>New Project </button>
       </div>
      </div>
-     <div class="flex flex-wrap gap-2 mb-4"><select id="proj-filter-status" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="proj-filter-category" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="proj-filter-priority" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
+     <div class="flex flex-wrap gap-2 mb-4">
+      <select id="proj-filter-status" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Statuses</option></select> <select id="proj-filter-category" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Categories</option></select> <select id="proj-filter-priority" onchange="renderProjects()" class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm"><option value="">All Priorities</option></select>
      </div><!-- Kanban -->
      <h3 class="text-sm font-bold text-txt mb-3">Project Board</h3>
      <div class="flex gap-3 overflow-x-auto pb-4 mb-6" id="kanban-board"></div><!-- Project Table -->
@@ -269,7 +297,11 @@ function priorityBadge(p) {
 // ============ DASHBOARD ============
 function renderDashboard() {
   const thisWeekHours = workLogs.reduce((a,l) => a + l.hours, 0);
-  const audited = workLogs.filter(l => l.category === 'Inventory Audit').length;
+  const auditLogs = workLogs.filter(l => l.category === 'Inventory Audit');
+  const audited = auditLogs.reduce((sum, log) => {
+    const countMatch = log.notes.match(/(\d+)\s*devices?/i);
+    return sum + (countMatch ? parseInt(countMatch[1]) : 0);
+  }, 0);
   const openVendor = vendorTickets.filter(t => t.status !== 'Resolved' && t.status !== 'Closed').length;
   const closed = vendorTickets.filter(t => t.status === 'Resolved' || t.status === 'Closed').length;
   const inRepair = inventory.filter(i => i.status === 'In Repair').length;
@@ -1295,6 +1327,12 @@ function applyConfig(config) {
   document.getElementById('el-title').textContent = c.dashboard_title;
   document.getElementById('el-school').textContent = c.school_name;
   document.getElementById('el-consultant').textContent = c.consultant_name;
+  
+  // Generate initials for avatar from consultant name
+  const names = c.consultant_name.trim().split(/\s+/);
+  const initials = names.slice(0, 2).map(n => n[0].toUpperCase()).join('');
+  document.getElementById('consultant-avatar').textContent = initials || 'TC';
+  
   const font = c.font_family + ', DM Sans, sans-serif';
   document.body.style.fontFamily = font;
   document.body.style.backgroundColor = c.background_color;
@@ -1331,8 +1369,60 @@ if (window.elementSdk) {
 }
 
 // Init
+function loadSettings() {
+  if (window.elementSdk && window.elementSdk.config) {
+    document.getElementById('setting-school').value = window.elementSdk.config.school_name || defaultConfig.school_name;
+    document.getElementById('setting-consultant').value = window.elementSdk.config.consultant_name || defaultConfig.consultant_name;
+    document.getElementById('setting-title').value = window.elementSdk.config.dashboard_title || defaultConfig.dashboard_title;
+  } else {
+    document.getElementById('setting-school').value = defaultConfig.school_name;
+    document.getElementById('setting-consultant').value = defaultConfig.consultant_name;
+    document.getElementById('setting-title').value = defaultConfig.dashboard_title;
+  }
+}
+
+function resetSettings() {
+  document.getElementById('setting-school').value = defaultConfig.school_name;
+  document.getElementById('setting-consultant').value = defaultConfig.consultant_name;
+  document.getElementById('setting-title').value = defaultConfig.dashboard_title;
+}
+
+function saveSettings(e) {
+  e.preventDefault();
+  const newConfig = {
+    school_name: document.getElementById('setting-school').value || defaultConfig.school_name,
+    consultant_name: document.getElementById('setting-consultant').value || defaultConfig.consultant_name,
+    dashboard_title: document.getElementById('setting-title').value || defaultConfig.dashboard_title,
+  };
+  if (window.elementSdk) {
+    window.elementSdk.setConfig(newConfig);
+  } else {
+    Object.assign(defaultConfig, newConfig);
+    applyConfig(defaultConfig);
+  }
+  const container = document.getElementById('modal-container');
+  container.innerHTML = `<div class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box max-w-sm">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-txt">Settings Saved</h3>
+        <button onclick="closeModal()" class="text-muted hover:text-txt"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="mb-4">
+        <p class="text-sm text-txt">Your dashboard settings have been updated successfully.</p>
+      </div>
+      <div class="flex justify-end gap-2">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700">Done</button>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+document.getElementById('settings-form')?.addEventListener('submit', saveSettings);
+
 renderDashboard();
+loadSettings();
 lucide.createIcons();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ed482f6d5b38095',t:'MTc3NjM1NjM2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9edbcd5d77b50615',t:'MTc3NjQzMjgxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
